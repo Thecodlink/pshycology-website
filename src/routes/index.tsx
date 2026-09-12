@@ -3,6 +3,7 @@ import { useState } from "react";
 import {
   ArrowLeft,
   ArrowRight,
+  Brain,
   BriefcaseBusiness,
   GraduationCap,
   Heart,
