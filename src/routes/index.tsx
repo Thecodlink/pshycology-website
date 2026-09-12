@@ -43,6 +43,10 @@ const testimonials = [
 
 function Index() {
   const [testimonial, setTestimonial] = useState(0);
+  const activeTestimonial = testimonials[testimonial] ?? {
+    quote: "A thoughtful, supportive experience that helped me find a clearer way forward.",
+    by: "Sukoon Nest client",
+  };
 
   const moveTestimonial = (step: number) => {
     setTestimonial((current) => (current + step + testimonials.length) % testimonials.length);
@@ -109,7 +113,7 @@ function Index() {
 
       <section id="stories" className="mx-auto grid max-w-7xl gap-10 px-5 py-20 lg:grid-cols-[.7fr_1.3fr] lg:px-8">
         <div><p className="mb-3 text-xs font-semibold uppercase tracking-[0.28em] text-peach">Kind words</p><h2 className="text-5xl">What people say.</h2><div className="mt-7 flex gap-3"><Button variant="quiet" size="icon" className="rounded-full" onClick={() => moveTestimonial(-1)} aria-label="Previous testimonial"><ArrowLeft /></Button><Button variant="quiet" size="icon" className="rounded-full" onClick={() => moveTestimonial(1)} aria-label="Next testimonial"><ArrowRight /></Button></div></div>
-        <blockquote className="rounded-xl bg-card p-8 soft-shadow sm:p-10"><span className="font-display text-6xl leading-none text-peach">“</span><p className="max-w-2xl text-xl leading-relaxed text-ink-soft">{testimonials[testimonial].quote}</p><footer className="mt-6 text-sm font-semibold">— {testimonials[testimonial].by}</footer></blockquote>
+        <blockquote className="rounded-xl bg-card p-8 soft-shadow sm:p-10"><span className="font-display text-6xl leading-none text-peach">“</span><p className="max-w-2xl text-xl leading-relaxed text-ink-soft">{activeTestimonial.quote}</p><footer className="mt-6 text-sm font-semibold">— {activeTestimonial.by}</footer></blockquote>
       </section>
 
       <section id="about" className="mx-auto max-w-7xl px-5 pb-20 lg:px-8"><div className="grid gap-8 rounded-[2rem] bg-sage-soft p-8 sm:p-12 lg:grid-cols-2"><div><p className="mb-3 text-xs font-semibold uppercase tracking-[0.28em] text-primary">A gentler way forward</p><h2 className="text-4xl sm:text-5xl">You matter here.</h2></div><p className="self-center leading-relaxed text-ink-soft">Sukoon Nest is built around attentive listening, practical support and steady progress. Every conversation respects your pace, your context and the life you want to create.</p></div></section>
