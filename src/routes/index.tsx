@@ -17,9 +17,8 @@ import {
   Users,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import counsellorPortrait from "@/assets/counsellor-portrait.jpg";
-import psychologySupport from "@/assets/psychology-support.jpg";
-import careerGuidance from "@/assets/career-guidance.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -41,8 +40,77 @@ const testimonials = [
   { quote: "I left each conversation feeling calmer, clearer and more confident in my decisions.", by: "Young professional" },
 ];
 
+const services = [
+  {
+    id: "psychology",
+    icon: Heart,
+    title: "Psychology & Counselling",
+    description: "A safe, confidential space to explore challenges, understand your emotions and build coping strategies.",
+    items: [
+      "Individual Counselling & Therapy",
+      "Couple Counselling",
+      "Family Therapy & Counselling",
+      "Emotional Well-being",
+      "Stress & Burnout",
+      "Anxiety & Worry",
+      "Overthinking",
+      "Emotional Regulation",
+      "Self-Esteem & Confidence",
+      "Personal Growth & Self-Discovery",
+      "Relationship & Interpersonal Concerns",
+      "Family & Parenting Support",
+      "Life Transitions & Loneliness",
+      "Workplace Stress & Life Transitions",
+      "Trauma-Informed & Psychosocial Support",
+    ],
+  },
+  {
+    id: "career",
+    icon: BriefcaseBusiness,
+    title: "Career & Educational Counselling",
+    description: "Personalised guidance to help you make informed decisions about study, work and transitions.",
+    items: [
+      "Career Exploration",
+      "Career Planning",
+      "Career Confusion",
+      "Strengths & Interests",
+      "Career Decision-Making",
+      "Educational Guidance",
+      "Higher Education Planning",
+      "Academic Stress",
+      "Exam Anxiety",
+      "Study Habits & Motivation",
+      "Goal Setting",
+      "Personalized Assessment & Counselling Report",
+    ],
+  },
+  {
+    id: "workshops",
+    icon: Users,
+    title: "Workshops, Training & Psychoeducation",
+    description: "Engaging group sessions that build skills, raise awareness and support communities.",
+    items: [
+      "Personality Development Workshops",
+      "Communication Skills Training",
+      "Emotional Intelligence Workshops",
+      "Stress Management Workshops",
+      "Life Skills Training",
+      "Psychoeducation Sessions",
+      "Mental Health Awareness Programs",
+      "School & College Mental Health Programs",
+      "Community Mental Health Initiatives",
+      "Journaling & Expressive Writing Workshops",
+    ],
+  },
+];
+
 function Index() {
   const [testimonial, setTestimonial] = useState(0);
+  const [expandedService, setExpandedService] = useState<string | null>(null);
+
+  const toggleService = (id: string) => {
+    setExpandedService((current) => (current === id ? null : id));
+  };
   const activeTestimonial = testimonials[testimonial] ?? {
     quote: "A thoughtful, supportive experience that helped me find a clearer way forward.",
     by: "Sukoon Nest client",
@@ -97,9 +165,41 @@ function Index() {
       </section>
 
       <section id="services" className="mx-auto max-w-7xl px-5 py-20 lg:px-8">
-        <div className="mb-10 flex flex-col justify-between gap-4 md:flex-row md:items-end"><div><p className="mb-3 text-xs font-semibold uppercase tracking-[0.28em] text-peach">What I help with</p><h2 className="max-w-xl text-4xl leading-tight sm:text-5xl">Support for every stage<br />of your journey.</h2></div><p className="max-w-sm text-sm leading-relaxed text-muted-foreground">Two areas of practice, each taken forward with care and attention.</p></div>
-        <div className="grid gap-5 md:grid-cols-2">
-          {[{img:psychologySupport,icon:Brain,title:"Psychology support",text:"A safe, confidential space to explore challenges, understand your emotions, build coping strategies and work towards a more balanced, fulfilling life."},{img:careerGuidance,icon:BriefcaseBusiness,title:"Career guidance",text:"Personalised guidance to help you make informed decisions about study, work and transitions, aligned with your strengths and aspirations."}].map(({img,icon:Icon,title,text}) => <article key={title} className="grid overflow-hidden rounded-xl bg-card soft-shadow sm:grid-cols-[42%_58%]"><img src={img} alt="Temporary calming visual" width={1024} height={1024} loading="lazy" className="h-full min-h-64 w-full object-cover"/><div className="flex flex-col justify-center p-7 lg:p-10"><Icon className="mb-5 text-primary"/><h3 className="text-3xl">{title}</h3><p className="mt-4 text-sm leading-relaxed text-muted-foreground">{text}</p><a href="#contact" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold underline underline-offset-4">Learn more <ArrowRight size={16}/></a></div></article>)}
+        <div className="mb-10 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+          <div>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.28em] text-peach">What I help with</p>
+            <h2 className="max-w-xl text-4xl leading-tight sm:text-5xl">Support for every stage<br />of your journey.</h2>
+          </div>
+          <p className="max-w-sm text-sm leading-relaxed text-muted-foreground">Three areas of practice, each taken forward with care, clarity and attention.</p>
+        </div>
+        <div className="grid gap-5 lg:grid-cols-3">
+          {services.map(({ id, icon: Icon, title, description, items }) => (
+            <article key={id} className="flex flex-col rounded-xl bg-card p-7 soft-shadow lg:p-9">
+              <Icon className="mb-5 text-primary" size={28} />
+              <h3 className="text-2xl leading-tight">{title}</h3>
+              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{description}</p>
+              <button
+                type="button"
+                onClick={() => toggleService(id)}
+                className="mt-6 inline-flex items-center gap-2 self-start text-sm font-semibold underline underline-offset-4 transition-opacity hover:opacity-75"
+                aria-expanded={expandedService === id}
+                aria-controls={`service-panel-${id}`}
+              >
+                {expandedService === id ? "Show less" : "Learn more"} <ArrowRight size={16} className={cn("transition-transform", expandedService === id && "rotate-90")} />
+              </button>
+              {expandedService === id && (
+                <div id={`service-panel-${id}`} className="mt-6 border-t border-border pt-6">
+                  <ul className="flex flex-wrap gap-2">
+                    {items.map((item) => (
+                      <li key={item} className="rounded-full bg-secondary px-3 py-1.5 text-xs font-medium text-secondary-foreground">
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </article>
+          ))}
         </div>
       </section>
 
@@ -120,9 +220,9 @@ function Index() {
 
       <section id="faq" className="mx-auto max-w-4xl px-5 pb-20"><p className="mb-3 text-center text-xs font-semibold uppercase tracking-[0.28em] text-peach">Common questions</p><h2 className="mb-8 text-center text-4xl">Before we begin</h2>{[ ["Are sessions available online?","Yes. You can choose online sessions or meet in person, depending on availability."],["Who can book a consultation?","Support is available for students, individuals and working professionals."],["What happens in the first session?","We begin by understanding what brings you here and what you would like support with."]].map(([q,a]) => <details key={q} className="border-t border-border py-5 last:border-b"><summary className="cursor-pointer list-none font-semibold">{q}<span className="float-right text-primary">+</span></summary><p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">{a}</p></details>)}</section>
 
-      <section id="contact" className="mx-auto max-w-7xl px-5 pb-10 lg:px-8"><div className="flex flex-col items-start justify-between gap-6 rounded-[2rem] bg-primary px-7 py-9 text-primary-foreground sm:flex-row sm:items-center sm:px-12"><div><h2 className="text-3xl sm:text-4xl">Ready to take the next step?</h2><p className="mt-2 text-sm opacity-85">Book a consultation or send an enquiry. We’ll respond within one working day.</p></div><div className="flex flex-wrap gap-3"><Button asChild variant="secondary" size="lg" className="rounded-full"><a href="mailto:hello@sukoonnest.example">Book a consultation <ArrowRight /></a></Button><Button asChild variant="outline" size="lg" className="rounded-full border-primary-foreground/40 bg-transparent text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground"><a href="mailto:hello@sukoonnest.example">Contact me</a></Button></div></div></section>
+      <section id="contact" className="mx-auto max-w-7xl px-5 pb-10 lg:px-8"><div className="flex flex-col items-start justify-between gap-6 rounded-[2rem] bg-primary px-7 py-9 text-primary-foreground sm:flex-row sm:items-center sm:px-12"><div><h2 className="text-3xl sm:text-4xl">Ready to take the next step?</h2><p className="mt-2 text-sm opacity-85">Book a consultation or send an enquiry. We’ll respond within one working day.</p></div><div className="flex flex-wrap gap-3"><Button asChild variant="secondary" size="lg" className="rounded-full"><a href="mailto:sukoonest2016@gmail.com">Book a consultation <ArrowRight /></a></Button><Button asChild variant="outline" size="lg" className="rounded-full border-primary-foreground/40 bg-transparent text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground"><a href="mailto:sukoonest2016@gmail.com">Contact me</a></Button></div></div></section>
 
-      <footer className="border-t border-border bg-card/70"><div className="mx-auto flex max-w-7xl flex-col gap-7 px-5 py-9 lg:flex-row lg:items-center lg:justify-between lg:px-8"><div className="flex items-center gap-3"><span className="grid size-10 place-items-center rounded-full border border-primary/40 text-primary"><Sprout size={21}/></span><span><strong className="block font-display text-xl font-normal">Sukoon Nest</strong><small className="text-[9px] uppercase tracking-[0.15em] text-muted-foreground">A safe space for growth & calm</small></span></div><nav className="flex flex-wrap gap-x-6 gap-y-2 text-xs"><a href="#about">About</a><a href="#services">Services</a><a href="#experience">Experience</a><a href="#stories">Stories</a><a href="#faq">FAQ</a></nav><div className="flex gap-4 text-primary"><Linkedin size={19}/><Instagram size={19}/><Mail size={19}/></div></div><div className="mx-auto flex max-w-7xl flex-wrap justify-between gap-3 border-t border-border px-5 py-5 text-[11px] text-muted-foreground lg:px-8"><span>© 2026 Sukoon Nest. All rights reserved.</span><span>Privacy Policy &nbsp; | &nbsp; Disclaimer</span></div></footer>
+      <footer className="border-t border-border bg-card/70"><div className="mx-auto flex max-w-7xl flex-col gap-7 px-5 py-9 lg:flex-row lg:items-center lg:justify-between lg:px-8"><div className="flex items-center gap-3"><span className="grid size-10 place-items-center rounded-full border border-primary/40 text-primary"><Sprout size={21}/></span><span><strong className="block font-display text-xl font-normal">Sukoon Nest</strong><small className="text-[9px] uppercase tracking-[0.15em] text-muted-foreground">A safe space for growth & calm</small></span></div><nav className="flex flex-wrap gap-x-6 gap-y-2 text-xs"><a href="#about">About</a><a href="#services">Services</a><a href="#experience">Experience</a><a href="#stories">Stories</a><a href="#faq">FAQ</a></nav><div className="flex gap-4 text-primary"><a href="https://in.linkedin.com/in/sukoon-nest-381833379" target="_blank" rel="noopener noreferrer" aria-label="Sukoon Nest on LinkedIn"><Linkedin size={19}/></a><a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Sukoon Nest on Instagram"><Instagram size={19}/></a><a href="mailto:sukoonest2016@gmail.com" aria-label="Email Sukoon Nest"><Mail size={19}/></a></div></div><div className="mx-auto flex max-w-7xl flex-wrap justify-between gap-3 border-t border-border px-5 py-5 text-[11px] text-muted-foreground lg:px-8"><span>© 2026 Sukoon Nest. All rights reserved.</span><span>Privacy Policy &nbsp; | &nbsp; Disclaimer</span></div></footer>
     </main>
   );
 }
