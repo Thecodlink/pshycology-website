@@ -3,7 +3,6 @@ import { useState } from "react";
 import {
   ArrowLeft,
   ArrowRight,
-  Brain,
   BriefcaseBusiness,
   GraduationCap,
   Heart,
@@ -19,8 +18,6 @@ import {
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import counsellorPortrait from "@/assets/counsellor-portrait.jpg";
-import psychologySupport from "@/assets/psychology-support.jpg";
-import careerGuidance from "@/assets/career-guidance.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
