@@ -17,6 +17,7 @@ import {
   Users,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import counsellorPortrait from "@/assets/counsellor-portrait.jpg";
 import psychologySupport from "@/assets/psychology-support.jpg";
 import careerGuidance from "@/assets/career-guidance.jpg";
@@ -41,8 +42,77 @@ const testimonials = [
   { quote: "I left each conversation feeling calmer, clearer and more confident in my decisions.", by: "Young professional" },
 ];
 
+const services = [
+  {
+    id: "psychology",
+    icon: Heart,
+    title: "Psychology & Counselling",
+    description: "A safe, confidential space to explore challenges, understand your emotions and build coping strategies.",
+    items: [
+      "Individual Counselling & Therapy",
+      "Couple Counselling",
+      "Family Therapy & Counselling",
+      "Emotional Well-being",
+      "Stress & Burnout",
+      "Anxiety & Worry",
+      "Overthinking",
+      "Emotional Regulation",
+      "Self-Esteem & Confidence",
+      "Personal Growth & Self-Discovery",
+      "Relationship & Interpersonal Concerns",
+      "Family & Parenting Support",
+      "Life Transitions & Loneliness",
+      "Workplace Stress & Life Transitions",
+      "Trauma-Informed & Psychosocial Support",
+    ],
+  },
+  {
+    id: "career",
+    icon: BriefcaseBusiness,
+    title: "Career & Educational Counselling",
+    description: "Personalised guidance to help you make informed decisions about study, work and transitions.",
+    items: [
+      "Career Exploration",
+      "Career Planning",
+      "Career Confusion",
+      "Strengths & Interests",
+      "Career Decision-Making",
+      "Educational Guidance",
+      "Higher Education Planning",
+      "Academic Stress",
+      "Exam Anxiety",
+      "Study Habits & Motivation",
+      "Goal Setting",
+      "Personalized Assessment & Counselling Report",
+    ],
+  },
+  {
+    id: "workshops",
+    icon: Users,
+    title: "Workshops, Training & Psychoeducation",
+    description: "Engaging group sessions that build skills, raise awareness and support communities.",
+    items: [
+      "Personality Development Workshops",
+      "Communication Skills Training",
+      "Emotional Intelligence Workshops",
+      "Stress Management Workshops",
+      "Life Skills Training",
+      "Psychoeducation Sessions",
+      "Mental Health Awareness Programs",
+      "School & College Mental Health Programs",
+      "Community Mental Health Initiatives",
+      "Journaling & Expressive Writing Workshops",
+    ],
+  },
+];
+
 function Index() {
   const [testimonial, setTestimonial] = useState(0);
+  const [expandedService, setExpandedService] = useState<string | null>(null);
+
+  const toggleService = (id: string) => {
+    setExpandedService((current) => (current === id ? null : id));
+  };
   const activeTestimonial = testimonials[testimonial] ?? {
     quote: "A thoughtful, supportive experience that helped me find a clearer way forward.",
     by: "Sukoon Nest client",
