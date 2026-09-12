@@ -97,9 +97,41 @@ function Index() {
       </section>
 
       <section id="services" className="mx-auto max-w-7xl px-5 py-20 lg:px-8">
-        <div className="mb-10 flex flex-col justify-between gap-4 md:flex-row md:items-end"><div><p className="mb-3 text-xs font-semibold uppercase tracking-[0.28em] text-peach">What I help with</p><h2 className="max-w-xl text-4xl leading-tight sm:text-5xl">Support for every stage<br />of your journey.</h2></div><p className="max-w-sm text-sm leading-relaxed text-muted-foreground">Two areas of practice, each taken forward with care and attention.</p></div>
-        <div className="grid gap-5 md:grid-cols-2">
-          {[{img:psychologySupport,icon:Brain,title:"Psychology support",text:"A safe, confidential space to explore challenges, understand your emotions, build coping strategies and work towards a more balanced, fulfilling life."},{img:careerGuidance,icon:BriefcaseBusiness,title:"Career guidance",text:"Personalised guidance to help you make informed decisions about study, work and transitions, aligned with your strengths and aspirations."}].map(({img,icon:Icon,title,text}) => <article key={title} className="grid overflow-hidden rounded-xl bg-card soft-shadow sm:grid-cols-[42%_58%]"><img src={img} alt="Temporary calming visual" width={1024} height={1024} loading="lazy" className="h-full min-h-64 w-full object-cover"/><div className="flex flex-col justify-center p-7 lg:p-10"><Icon className="mb-5 text-primary"/><h3 className="text-3xl">{title}</h3><p className="mt-4 text-sm leading-relaxed text-muted-foreground">{text}</p><a href="#contact" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold underline underline-offset-4">Learn more <ArrowRight size={16}/></a></div></article>)}
+        <div className="mb-10 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+          <div>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.28em] text-peach">What I help with</p>
+            <h2 className="max-w-xl text-4xl leading-tight sm:text-5xl">Support for every stage<br />of your journey.</h2>
+          </div>
+          <p className="max-w-sm text-sm leading-relaxed text-muted-foreground">Three areas of practice, each taken forward with care, clarity and attention.</p>
+        </div>
+        <div className="grid gap-5 lg:grid-cols-3">
+          {services.map(({ id, icon: Icon, title, description, items }) => (
+            <article key={id} className="flex flex-col rounded-xl bg-card p-7 soft-shadow lg:p-9">
+              <Icon className="mb-5 text-primary" size={28} />
+              <h3 className="text-2xl leading-tight">{title}</h3>
+              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{description}</p>
+              <button
+                type="button"
+                onClick={() => toggleService(id)}
+                className="mt-6 inline-flex items-center gap-2 self-start text-sm font-semibold underline underline-offset-4 transition-opacity hover:opacity-75"
+                aria-expanded={expandedService === id}
+                aria-controls={`service-panel-${id}`}
+              >
+                {expandedService === id ? "Show less" : "Learn more"} <ArrowRight size={16} className={cn("transition-transform", expandedService === id && "rotate-90")} />
+              </button>
+              {expandedService === id && (
+                <div id={`service-panel-${id}`} className="mt-6 border-t border-border pt-6">
+                  <ul className="flex flex-wrap gap-2">
+                    {items.map((item) => (
+                      <li key={item} className="rounded-full bg-secondary px-3 py-1.5 text-xs font-medium text-secondary-foreground">
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </article>
+          ))}
         </div>
       </section>
 
