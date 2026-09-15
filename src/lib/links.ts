@@ -5,7 +5,7 @@
  * routes and the footer.
  */
 
-import { cn } from "@/lib/utils";
+import { cn } from "./utils";
 
 export const WHATSAPP_HREF = "https://wa.me/919336566647";
 export const LINKEDIN_HREF = "https://www.linkedin.com/in/sukoon-nest-381833379/";

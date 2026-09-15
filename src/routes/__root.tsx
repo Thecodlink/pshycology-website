@@ -14,6 +14,7 @@ import appCss from "../styles.css?url";
 import SukoonGreetingLoader from "../components/Preloader/SukoonGreetingLoader";
 import RouteTransition from "../components/RouteTransition/RouteTransition";
 import ScrollTopButton from "../components/buttons/ScrollTopButton";
+import { NotFoundExperience } from "../components/layout/NotFoundExperience";
 import { THEME_SCRIPT, INTRO_GUARD_SCRIPT } from "../lib/theme";
 import {
   OG_IMAGE_ABSOLUTE,
@@ -24,34 +25,7 @@ import {
 } from "../lib/site";
 
 function NotFoundComponent() {
-  return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4 py-16">
-      <div className="max-w-md text-center">
-        <img
-          src="/images/brand/404-illustration.webp"
-          alt=""
-          width={768}
-          height={768}
-          className="mx-auto w-64 max-w-full sm:w-80"
-        />
-        <p className="mt-6 font-display text-5xl text-primary" aria-hidden="true">
-          404
-        </p>
-        <h1 className="mt-2 text-xl font-semibold text-foreground">Page not found</h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
-        </p>
-        <div className="mt-6">
-          <Link
-            to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-          >
-            Go home
-          </Link>
-        </div>
-      </div>
-    </div>
-  );
+  return <NotFoundExperience />;
 }
 
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {

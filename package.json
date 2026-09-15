@@ -11,7 +11,9 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "test": "vitest run",
-    "optimize:images": "node scripts/optimize-images.mjs"
+    "optimize:images": "node scripts/optimize-images.mjs",
+    "postbuild": "node scripts/postbuild-pages.mjs",
+    "preview:pages": "node scripts/ghpages-preview.mjs"
   },
   "overrides": {
     "rolldown": "1.2.1"
