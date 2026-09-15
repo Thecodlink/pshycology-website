@@ -1,5 +1,7 @@
 # Sukoon Nest — review service
 
+> **Deployed:** https://sukoonnest-reviews-production.up.railway.app (Railway project `sukoonnest-reviews`, Dockerfile build, `/data` volume for SQLite). GitHub Actions variable `REVIEW_API_URL` points the Pages build at it. Moderation: `<that-url>/admin` — token stored in Railway env `REVIEW_ADMIN_TOKEN` (not in the repo).
+
 The real backend behind the website's "Your experience matters" section.
 **Zero npm dependencies**: Node's built-in HTTP server + `node:sqlite`
 (persistent, embedded). The GitHub Pages frontend is static and cannot write
