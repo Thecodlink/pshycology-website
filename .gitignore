@@ -40,3 +40,8 @@ dist-ssr
 
 # editor metadata (not part of the project)
 .lovable/
+
+# local databases (never commit review data)
+*.db
+*.db-wal
+*.db-shm
