@@ -53,10 +53,12 @@ describe("content data integrity", () => {
     }
   });
 
-  it("SITE_URL placeholder behaviour (domain not yet connected)", () => {
-    expect(absoluteUrl("/x")).toBeUndefined();
-    const req = new Request("https://sukoon.example/services/foo?x=1");
-    expect(sitemapOrigin(req)).toBe("https://sukoon.example");
+  it("SITE_URL drives every absolute URL from one constant", () => {
+    expect(absoluteUrl()).toBe("https://sukoonnest.live");
+    expect(absoluteUrl("/services/x")).toBe("https://sukoonnest.live/services/x");
+    expect(sitemapOrigin(new Request("http://localhost:8080/sitemap.xml"))).toBe(
+      "https://sukoonnest.live",
+    );
   });
 
   it("every /images/ path referenced anywhere in src exists on disk", () => {

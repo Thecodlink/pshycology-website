@@ -33,7 +33,7 @@ import { services } from "@/lib/services";
 import { inActionItems, type InActionItem } from "@/lib/inAction";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import { openWhatsApp, scrollToId, WHATSAPP_HREF } from "@/lib/links";
-import { OG_IMAGE, absoluteUrl } from "@/lib/site";
+import { OG_IMAGE_ABSOLUTE, absoluteUrl } from "@/lib/site";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -50,9 +50,9 @@ export const Route = createFileRoute("/")({
         content: "A safe space for growth, calm and meaningful change.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: OG_IMAGE },
+      { property: "og:image", content: OG_IMAGE_ABSOLUTE },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: OG_IMAGE },
+      { name: "twitter:image", content: OG_IMAGE_ABSOLUTE },
     ],
     links: absoluteUrl("/") ? [{ rel: "canonical", href: absoluteUrl("/") as string }] : [],
   }),

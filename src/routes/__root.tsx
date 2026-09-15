@@ -16,7 +16,7 @@ import RouteTransition from "../components/RouteTransition/RouteTransition";
 import ScrollTopButton from "../components/buttons/ScrollTopButton";
 import { THEME_SCRIPT, INTRO_GUARD_SCRIPT } from "../lib/theme";
 import {
-  OG_IMAGE,
+  OG_IMAGE_ABSOLUTE,
   OG_IMAGE_HEIGHT,
   OG_IMAGE_WIDTH,
   SITE_NAME,
@@ -109,7 +109,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content: "A safe space for clarity, confidence and meaningful change.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: OG_IMAGE },
+      { property: "og:image", content: OG_IMAGE_ABSOLUTE },
       { property: "og:image:width", content: String(OG_IMAGE_WIDTH) },
       { property: "og:image:height", content: String(OG_IMAGE_HEIGHT) },
       { name: "twitter:card", content: "summary_large_image" },
@@ -118,7 +118,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         name: "twitter:description",
         content: "A safe space for clarity, confidence and meaningful change.",
       },
-      { name: "twitter:image", content: OG_IMAGE },
+      { name: "twitter:image", content: OG_IMAGE_ABSOLUTE },
     ],
     links: [
       {

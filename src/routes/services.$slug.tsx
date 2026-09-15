@@ -6,7 +6,7 @@ import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteNav } from "@/components/layout/SiteNav";
 import { SectionFade } from "@/components/SectionFade/SectionFade";
 import { getServiceBySlug } from "@/lib/services";
-import { OG_IMAGE, absoluteUrl } from "@/lib/site";
+import { OG_IMAGE_ABSOLUTE, absoluteUrl } from "@/lib/site";
 
 export const Route = createFileRoute("/services/$slug")({
   head: ({ params }) => {
@@ -23,9 +23,9 @@ export const Route = createFileRoute("/services/$slug")({
         { property: "og:title", content: `${title} – Sukoon Nest` },
         { property: "og:description", content: description },
         { property: "og:type", content: "website" },
-        { property: "og:image", content: OG_IMAGE },
+        { property: "og:image", content: OG_IMAGE_ABSOLUTE },
         { name: "twitter:card", content: "summary_large_image" },
-        { name: "twitter:image", content: OG_IMAGE },
+        { name: "twitter:image", content: OG_IMAGE_ABSOLUTE },
       ],
       links: canonical ? [{ rel: "canonical", href: canonical }] : [],
     };

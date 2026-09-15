@@ -1,17 +1,14 @@
 /*
  * Central brand + site constants for metadata, JSON-LD and technical SEO.
  *
- * SITE_URL is intentionally blank until the production domain is connected.
- * Fill it in (e.g. "https://sukoonnest.example") and every absolute URL —
- * canonical, og:url, sitemap and JSON-LD — activates automatically. Until
- * then, root-relative asset URLs are emitted (crawlers resolve them against
- * the page URL) and canonical/og:url are omitted instead of pointing at a
- * guessed domain.
+ * SITE_URL is the canonical production origin. Every absolute URL —
+ * canonical, og:url, sitemap and JSON-LD — is derived from this single
+ * constant, so a future domain change is a one-line edit here.
  */
 
 import { EMAIL_HREF, LINKEDIN_HREF, WHATSAPP_HREF } from "./links";
 
-export const SITE_URL = "";
+export const SITE_URL = "https://sukoonnest.live";
 
 export const SITE_NAME = "Sukoon Nest";
 
@@ -20,12 +17,14 @@ export const SITE_TITLE = "Sukoon Nest | Psychology & Career Counselling";
 export const SITE_DESCRIPTION =
   "Compassionate psychology support and practical career guidance, available online and in person.";
 
-export const OG_IMAGE = "/images/og/og-image.jpg";
 export const OG_IMAGE_WIDTH = 1200;
 export const OG_IMAGE_HEIGHT = 628;
 
 export const absoluteUrl = (path = "/"): string | undefined =>
   SITE_URL ? `${SITE_URL}${path === "/" ? "" : path}` : undefined;
+
+/* Social crawlers require an absolute image URL — safe now that SITE_URL is set. */
+export const OG_IMAGE_ABSOLUTE = absoluteUrl("/images/og/og-image.jpg")!;
 
 /**
  * Origin used for the XML sitemap. Prefers the configured SITE_URL and falls
