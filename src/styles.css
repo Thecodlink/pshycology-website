@@ -70,7 +70,7 @@
 
 :root {
   --radius: 0.75rem;
-  --background: #fdfdfb; /* Opal White — pale, bright, faintly hazy page background */
+  --background: #ffffff; /* Pale White — clean, bright page background */
   --foreground: #1f332c; /* Deep Forest Charcoal — primary text */
   --card: #ffffff; /* Porcelain — card surface */
   --card-foreground: #1f332c;
@@ -180,7 +180,7 @@
     linear-gradient(
       135deg,
       var(--background),
-      color-mix(in oklab, var(--background) 93%, var(--sage-soft))
+      color-mix(in oklab, var(--background) 96%, var(--sage-soft))
     );
 }
 
