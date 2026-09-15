@@ -37,3 +37,6 @@ dist-ssr
 !.env.example
 *.pem
 *.key
+
+# editor metadata (not part of the project)
+.lovable/
