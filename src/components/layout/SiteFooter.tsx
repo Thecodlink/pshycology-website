@@ -58,7 +58,15 @@ export const SiteFooter = () => (
     </div>
     <div className="mx-auto flex max-w-7xl flex-wrap justify-between gap-3 border-t border-border px-5 py-5 text-[11px] text-muted-foreground lg:px-8">
       <span>© 2026 Sukoon Nest. All rights reserved.</span>
-      <span>Privacy Policy &nbsp; | &nbsp; Disclaimer</span>
+      <span className="flex gap-2">
+        <Link to="/privacy" className="transition-colors hover:text-foreground">
+          Privacy Policy
+        </Link>
+        <span aria-hidden="true">|</span>
+        <Link to="/disclaimer" className="transition-colors hover:text-foreground">
+          Disclaimer
+        </Link>
+      </span>
     </div>
   </footer>
 );

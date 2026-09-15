@@ -1,0 +1,12 @@
+/* Sukoon Nest — humans.txt */
+
+SUKOON NEST
+A safe space for growth, calm and clarity.
+
+TEAM
+Designer & Developer: @Thecodlink (https://github.com/Thecodlink)
+Language: English
+Standards: HTML5, CSS3, TypeScript, accessibility-first
+
+TECHNOLOGY
+TanStack Start · React · Vite · Tailwind CSS · GSAP · Motion
