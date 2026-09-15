@@ -69,7 +69,7 @@ export const ReviewMarquee = ({ items, className }: ReviewMarqueeProps) => {
       <div
         className={cn(
           "flex",
-          marquee ? "flex-row animate-marquee" : "flex-col items-stretch gap-5",
+          marquee ? "flex-row animate-marquee" : "flex-col items-center gap-5",
           marquee && "focus-visible:outline-none focus-visible:ring-2",
           marquee && "focus-visible:ring-[var(--primary)] focus-visible:ring-offset-2",
         )}
@@ -83,20 +83,21 @@ export const ReviewMarquee = ({ items, className }: ReviewMarqueeProps) => {
         tabIndex={marquee ? 0 : -1}
       >
         {list.map(({ item, copy }, i) => (
-          <ReviewCard key={`${i}-${item.by}`} item={item} hidden={copy > 0} />
+          <ReviewCard key={`${i}-${item.by}`} item={item} hidden={copy > 0} mr={marquee} />
         ))}
       </div>
     </div>
   );
 };
 
-const ReviewCard = ({ item, hidden }: { item: ReviewItem; hidden?: boolean }) => (
+const ReviewCard = ({ item, hidden, mr }: { item: ReviewItem; hidden?: boolean; mr?: boolean }) => (
   <div
     aria-hidden={hidden || undefined}
     className={cn(
-      "relative mr-5 flex-shrink-0 rounded-xl bg-card p-5 sm:p-6",
+      "relative flex-shrink-0 rounded-xl bg-card p-5 sm:p-6",
       "soft-shadow border border-ink-soft/10",
       "w-[260px] sm:w-[300px]",
+      mr && "mr-5",
     )}
   >
     <div className="mb-3 flex items-center gap-0.5 text-[var(--peach)]">

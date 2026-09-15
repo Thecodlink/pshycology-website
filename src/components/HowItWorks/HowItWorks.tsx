@@ -140,7 +140,7 @@ const StepContent: FC<{ step: HowItWorksStep }> = ({ step }) => {
           <SlideArrowButton
             text={step.cta}
             primaryColor="var(--peach)"
-            className="h-13 rounded-full px-8 text-base"
+            className="h-13 rounded-full px-5 text-sm sm:px-8 sm:text-base"
             onClick={openWhatsApp}
           />
         </div>

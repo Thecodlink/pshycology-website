@@ -26,7 +26,7 @@ export default function SlideArrowButton({
           <ArrowRight size={20} />
         </span>
       </div>
-      <span className="relative left-4 z-10 whitespace-nowrap px-8 font-semibold text-black transition-all duration-200 ease-in-out group-hover/slide:-left-3 group-hover/slide:text-white">
+      <span className="relative left-3 z-10 whitespace-nowrap px-5 sm:left-4 sm:px-8 font-semibold text-black transition-all duration-200 ease-in-out group-hover/slide:-left-3 group-hover/slide:text-white">
         {text}
       </span>
     </button>

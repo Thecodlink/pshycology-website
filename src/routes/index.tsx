@@ -154,7 +154,7 @@ function Index() {
               <div className="mt-8 flex flex-wrap items-center gap-4">
                 <SlideArrowButton
                   text="Book a consultation"
-                  className="h-13 rounded-full px-8"
+                  className="h-13 rounded-full px-5 sm:px-8"
                   onClick={openWhatsApp}
                 />
                 <SwipeButton
@@ -537,7 +537,7 @@ function Index() {
                   <SlideArrowButton
                     text="Book a free 10 min call"
                     primaryColor="var(--peach)"
-                    className="h-14 rounded-full px-8 text-base"
+                    className="h-14 w-full max-w-xs rounded-full px-5 text-[15px] sm:w-auto sm:max-w-none sm:px-8 sm:text-base"
                     onClick={openWhatsApp}
                   />
                 </div>
