@@ -117,7 +117,7 @@ export const FaqAccordion = ({ items, className }: FaqAccordionProps) => {
                   className={cn(
                     "ml-auto shrink-0 transition-transform duration-300",
                     "text-[var(--primary)]",
-                    isOpen && "rotate-180",
+                    isOpen && "rotate-45",
                   )}
                 >
                   <PlusIcon />
@@ -151,9 +151,9 @@ const PlusIcon = () => (
     aria-hidden="true"
   >
     <path
-      d="M10 4v12M4 10h12"
+      d="M10 3.5v13M3.5 10h13"
       stroke="currentColor"
-      strokeWidth="1.75"
+      strokeWidth="2.75"
       strokeLinecap="round"
       strokeLinejoin="round"
     />
