@@ -237,7 +237,11 @@ function Index() {
                       <Icon className="size-6 text-primary" />
                     </div>
                     <strong className="mt-4 inline-block min-w-[6ch] text-center font-display text-3xl font-normal tabular-nums text-foreground sm:text-4xl">
-                      <Counter value={v} suffix={suf} />
+                      <Counter
+                        value={v}
+                        suffix={suf}
+                        suffixClassName="font-sans text-[0.55em] font-semibold top-[-0.06em] text-foreground/85"
+                      />
                     </strong>
                     <span className="mt-2 min-h-[2.5rem] text-xs text-muted-foreground">
                       {label}

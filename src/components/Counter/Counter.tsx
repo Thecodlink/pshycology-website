@@ -14,6 +14,12 @@ export interface CounterProps {
   duration?: number;
   /** Extra class names for the rendered `<span>`. */
   className?: string;
+  /**
+   * Class applied to the suffix ("+", "%"). Display fonts like Italiana
+   * render a tiny high hairline plus that reads like a stray stroke — the
+   * stats pass a sans, bolded treatment so it looks like a real +.
+   */
+  suffixClassName?: string;
 }
 
 const formatValue = (prefix: string, value: number, suffix: string): string =>
@@ -32,6 +38,7 @@ export const Counter: FC<CounterProps> = ({
   suffix = "",
   duration = 2.2,
   className,
+  suffixClassName = "font-sans text-[0.62em] font-semibold top-[-0.08em]",
 }) => {
   const ref = useRef<HTMLSpanElement>(null);
   const motionValue = useMotionValue(0);
@@ -77,7 +84,14 @@ export const Counter: FC<CounterProps> = ({
       aria-label={`${prefix}${value.toLocaleString("en-US")}${suffix}`}
       className={cn("tabular-nums", className)}
     >
-      {display}
+      {suffix && display.length > suffix.length ? (
+        <>
+          {display.slice(0, -suffix.length)}
+          <span className={cn("relative", suffixClassName)}>{suffix}</span>
+        </>
+      ) : (
+        display
+      )}
     </span>
   );
 };
