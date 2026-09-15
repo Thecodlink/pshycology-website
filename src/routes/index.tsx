@@ -25,6 +25,7 @@ import { BentoGrid, BentoCard } from "@/components/magicui/bento-grid";
 import { SiteNav } from "@/components/layout/SiteNav";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { FaqAccordion } from "@/components/FaqAccordion/FaqAccordion";
+import { ReviewsSection } from "@/components/Reviews/ReviewsSection";
 import { ReviewMarquee } from "@/components/ReviewMarquee/ReviewMarquee";
 import SlideArrowButton from "@/components/buttons/SlideArrowButton";
 import { HowItWorks } from "@/components/HowItWorks/HowItWorks";
@@ -475,6 +476,13 @@ function Index() {
               <FaqAccordion items={faqItems} />
             </div>
           </section>
+        </SectionFade>
+
+        {/* Real, moderated reviews — only approved entries fetched from the
+            review service appear here; the illustrative "Kind words" marquee
+            above is separate editorial content. */}
+        <SectionFade>
+          <ReviewsSection />
         </SectionFade>
 
         {/* "How it works" — five-step editorial journey. NO SectionFade here:

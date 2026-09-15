@@ -17,13 +17,16 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      # Public build-time URL of the review service (repo variable; empty = section renders offline notice)
+      VITE_REVIEW_API_URL: ${{ vars.REVIEW_API_URL }}
     steps:
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
       - run: bun install --frozen-lockfile
-      - run: bun run build   # vite build (prerender + sitemap) -> postbuild-pages (404.html + asserts)
+      - run: bun run build # vite build (prerender + sitemap) -> postbuild-pages (404.html + asserts)
       - uses: actions/upload-pages-artifact@v3
         with:
           path: .output/public
